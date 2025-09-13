@@ -7,7 +7,7 @@ OUT_DIR      = api
 # Lấy danh sách proto, bỏ qua google/api
 PROTO_FILES := $(shell find $(PROTO_DIR) -name "*.proto" ! -path "$(PROTO_DIR)/google/*" ! -path "$(PROTO_DIR)/protoc-gen-openapiv2/*")
 
-proto: clean
+proto:
 	@mkdir -p $(OUT_DIR)
 	$(PROTOC) \
 		--proto_path=$(PROTO_DIR) \
@@ -15,9 +15,6 @@ proto: clean
 		--go-grpc_out=$(OUT_DIR) --go-grpc_opt=paths=source_relative \
 		--grpc-gateway_out=$(OUT_DIR) --grpc-gateway_opt=paths=source_relative \
 		$(PROTO_FILES)
-clean:
-	@echo "🧹 Cleaning generated files..."
-	@rm -rf $(OUT_DIR)
 
 network:
 	docker network create jss-network

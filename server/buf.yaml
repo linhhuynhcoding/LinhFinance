@@ -1,6 +1,4 @@
 version: v1
-name: linhhuynhcoding/LinhFinance
-deps: []
-build:
-  roots:
-    - proto
+name: buf.build/linhhuynhcoding/linhfinance
+deps:
+

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package api;
+
+// import "google/api/annotations.proto";
+// import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/linhhuynhcoding/LinhFinance/api";
+
+message Spending {
+    
+}

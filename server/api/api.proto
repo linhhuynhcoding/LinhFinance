@@ -3,18 +3,89 @@ syntax = "proto3";
 package api;
 
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
+// import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/linhhuynhcoding/LinhFinance/api";
 
 
 service Service {
-    rpc LoadSendingForm(LoadSendingFormRequest) returns (LoadSendingFormResponse) {
+  // Returns form data for spending
+  rpc LoadSpendingForm(LoadSpendingFormRequest) returns (LoadSpendingFormResponse) {
     option (google.api.http) = {
-      post: "/v1/orders"
+      post: "/api/load-spending-form"
       body: "*"
     };
   }
-    
+  
+  // Returns form data for income
+  rpc LoadIncomeForm(LoadIncomeFormRequest) returns (LoadIncomeFormResponse) {
+    option (google.api.http) = {
+      post: "/api/load-income-form"
+      body: "*"
+    };
+  }
 
+  // load history spending in today
+  rpc LoadHistorySpending(LoadHistorySpendingRequest) returns (LoadHistorySpendingResponse) {
+    option (google.api.http) = {
+      post: "/api/load-history-spending"
+      body: "*"
+    };
+  }
+}
+
+message LoadSpendingFormRequest {}
+message LoadSpendingFormResponse {
+  message Account {
+    int32 id = 1;
+    string name = 2;
+  }
+  message SpendType {
+    int32 id = 1;
+    string name = 2;
+  }
+  message SpendTag {
+    int32 id = 1;
+    string name = 2;
+  }
+  message Purpose {
+    int32 id = 1;
+    string name = 2;
+  }
+  
+  
+  repeated Account accounts = 1;
+  repeated SpendType spend_type = 2;
+  repeated SpendTag spend_tag = 3;
+  repeated Purpose purpose = 4;
+}
+
+message LoadIncomeFormRequest{}
+message LoadIncomeFormResponse{
+  message Account {
+    int32 id = 1;
+    string name = 2;
+  }
+  message IncomeType {
+    int32 id = 1;
+    string name = 2;
+  }
+  message IncomeTag {
+    int32 id = 1;
+    string name = 2;
+  }
+  message Purpose {
+    int32 id = 1;
+    string name = 2;
+  }
+  
+  repeated Account accounts = 1;
+  repeated IncomeType income_type = 2;
+  repeated IncomeTag income_tag = 3;
+  repeated Purpose purpose = 4;
+}
+
+message LoadHistorySpendingRequest {}
+message LoadHistorySpendingResponse {
+  
 }
