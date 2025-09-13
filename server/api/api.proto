@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package api;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/linhhuynhcoding/LinhFinance/api";
+
+
+service Service {
+    rpc LoadSendingForm(LoadSendingFormRequest) returns (LoadSendingFormResponse) {
+    option (google.api.http) = {
+      post: "/v1/orders"
+      body: "*"
+    };
+  }
+    
+
+}
